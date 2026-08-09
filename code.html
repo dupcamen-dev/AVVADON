@@ -218,8 +218,8 @@
 <button id="heroOrder" class="relative z-10 bg-primary text-on-primary font-label-sm text-label-sm py-4 px-10 uppercase tracking-widest hover:bg-error transition-colors cursor-pointer mt-6">Submit to the Scent</button>
 </div>
 <div class="md:col-span-5 mt-12 md:mt-0 md:-ml-12 lg:-ml-64">
-<div class="relative w-full aspect-[4/5] bg-primary">
-<div data-alt="AVVADON Perfume Bottle: НЕ БІЙСЯ" class="absolute inset-0 bg-cover bg-fixed bg-center opacity-95" style="background-image: url('photo_2026-08-08_21-34-22.jpg')"></div>
+<div class="relative w-full aspect-[4/5] bg-primary overflow-hidden">
+<img id="heroPhoto" alt="AVVADON Perfume Bottle: НЕ БІЙСЯ" class="absolute inset-0 w-full h-full object-cover opacity-95 will-change-transform" src="photo_2026-08-08_21-34-22.jpg">
 <div class="absolute inset-0 border border-primary/20 pointer-events-none"></div>
 </div>
 </div>
@@ -669,6 +669,19 @@ Each vessel is transported in a sealed reliquary of matte black and gold. Delive
             toTopBtn.classList.toggle('pointer-events-none', !show);
         });
         toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const heroPhoto = $('#heroPhoto');
+        let heroTicking = false;
+        function fixHeroPhoto() {
+            heroTicking = false;
+            if (heroPhoto) heroPhoto.style.transform = 'translateY(' + window.scrollY + 'px)';
+        }
+        window.addEventListener('scroll', () => {
+            if (heroPhoto && !heroTicking) {
+                heroTicking = true;
+                requestAnimationFrame(fixHeroPhoto);
+            }
+        });
 
         const sideIcons = [
             ['#sideNavLinks a:nth-child(1)', '#sideIcon-light'],

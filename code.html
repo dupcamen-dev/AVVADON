@@ -124,70 +124,7 @@
         #mobileMenu.closed { transform: translateX(-100%); }
         html.smooth { scroll-behavior: smooth; }
 
-        .film-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 9999; }
-        .film-overlay > div { position: absolute; inset: 0; }
-
-        .film-grain {
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>");
-            background-size: 300px 300px;
-            opacity: 0.07;
-            animation: film-grain 1.2s steps(6) infinite;
-        }
-        @keyframes film-grain {
-            0% { background-position: 0 0; }
-            20% { background-position: -150px 90px; }
-            40% { background-position: 120px -70px; }
-            60% { background-position: -90px -130px; }
-            80% { background-position: 60px 140px; }
-            100% { background-position: 0 0; }
-        }
-
-        .film-vignette {
-            background: radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0, 0, 0, 0.42) 100%);
-        }
-
-        .film-scratch {
-            background: repeating-linear-gradient(90deg,
-                rgba(255, 255, 255, 0) 0 140px,
-                rgba(255, 255, 255, 0.05) 140px 141px,
-                rgba(0, 0, 0, 0.06) 141px 142px,
-                rgba(255, 255, 255, 0) 142px 320px);
-            background-size: 320px 100%;
-            animation: film-scratch 6s linear infinite;
-        }
-        @keyframes film-scratch {
-            0% { background-position: 0 0; }
-            100% { background-position: 320px 0; }
-        }
-
-        .film-flicker {
-            background: rgba(255, 255, 255, 0.03);
-            animation: film-flicker 5s steps(3) infinite;
-        }
-        @keyframes film-flicker {
-            0% { opacity: 0; }
-            28% { opacity: 1; }
-            42% { opacity: 0; }
-            50% { opacity: 0.7; }
-            56% { opacity: 0; }
-            100% { opacity: 0; }
-        }
-
-        .film-bars {
-            height: 42px;
-            background: rgba(0, 0, 0, 0.5);
-            animation: film-bars 14s ease-in-out infinite;
-        }
-        .film-bars.top { top: 0; }
-        .film-bars.bottom { bottom: 0; }
-        @keyframes film-bars {
-            0%, 100% { opacity: 0; }
-            6% { opacity: 1; }
-            14% { opacity: 1; }
-            22% { opacity: 0; }
-        }
-
-        #toTopBtn { transition: opacity 0.5s ease, transform 0.3s ease, background-color 0.3s ease; }
+        #toTopBtn { transition: opacity 0.5s ease, transform 0.3s ease; }
         #toTopBtn:hover { transform: translateY(-4px); }
     </style>
 </head>
@@ -537,22 +474,9 @@ Each vessel is transported in a sealed reliquary of matte black and gold. Delive
 </div>
 </div>
 
-<!-- Old Film Effect -->
-<div class="film-overlay" aria-hidden="true">
-<div class="film-vignette"></div>
-<div class="film-grain"></div>
-<div class="film-scratch"></div>
-<div class="film-flicker"></div>
-<div class="film-bars top"></div>
-<div class="film-bars bottom"></div>
-</div>
-
-<!-- Scroll to Top: Wings -->
-<button id="toTopBtn" aria-label="Ascend to the top" title="Ascend" class="fixed bottom-6 right-6 z-[100] bg-primary text-on-primary p-4 opacity-0 pointer-events-none">
-<svg class="w-7 h-7" viewBox="0 0 60 30" fill="currentColor" aria-hidden="true">
-<path d="M30 6C24 3 12 3 4 8C0 11 0 16 3 18C5 19.5 8 19 10 17C10 21 14 23 18 22C21 21.5 23 19 23 16C24 18 26 19 28 18.5C29.5 18 30 16.5 30 15Z"></path>
-<path d="M30 6C36 3 48 3 56 8C60 11 60 16 57 18C55 19.5 52 19 50 17C50 21 46 23 42 22C39 21.5 37 19 37 16C36 18 34 19 32 18.5C30.5 18 30 16.5 30 15Z"></path>
-</svg>
+<!-- Scroll to Top -->
+<button id="toTopBtn" aria-label="Ascend to the top" title="Ascend" class="fixed bottom-6 right-6 z-[100] opacity-0 pointer-events-none">
+<img src="scroll-top.png" alt="Ascend" class="w-14 h-14 object-contain drop-shadow-[0_0_12px_rgba(0,0,0,0.45)]">
 </button>
 
 <script>

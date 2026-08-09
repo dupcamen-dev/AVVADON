@@ -670,18 +670,26 @@ Each vessel is transported in a sealed reliquary of matte black and gold. Delive
         });
         toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+        const heroSection = document.querySelector('#hero');
         const heroPhoto = $('#heroPhoto');
         let heroTicking = false;
-        function fixHeroPhoto() {
+        function parallaxHero() {
             heroTicking = false;
-            if (heroPhoto) heroPhoto.style.transform = 'translateY(' + window.scrollY + 'px)';
+            if (!heroPhoto || !heroSection) return;
+            const r = heroSection.getBoundingClientRect();
+            if (r.bottom < -100 || r.top > window.innerHeight + 100) {
+                heroPhoto.style.transform = '';
+                return;
+            }
+            heroPhoto.style.transform = 'translate3d(0, ' + (-r.top * 0.12).toFixed(2) + 'px, 0) scale(1.35)';
         }
         window.addEventListener('scroll', () => {
             if (heroPhoto && !heroTicking) {
                 heroTicking = true;
-                requestAnimationFrame(fixHeroPhoto);
+                requestAnimationFrame(parallaxHero);
             }
-        });
+        }, { passive: true });
+        parallaxHero();
 
         const sideIcons = [
             ['#sideNavLinks a:nth-child(1)', '#sideIcon-light'],

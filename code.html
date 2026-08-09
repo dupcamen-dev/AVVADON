@@ -130,18 +130,18 @@
         nav, #mobileMenu { scrollbar-width: none; -ms-overflow-style: none; overflow-x: hidden; }
         nav::-webkit-scrollbar, #mobileMenu::-webkit-scrollbar { display: none; width: 0; height: 0; }
 
-        #gradientOverlay {
+        #filmOverlay {
             background:
-                radial-gradient(55% 55% at 25% 25%, rgba(168, 216, 255, 0.35), transparent 70%),
-                radial-gradient(50% 50% at 75% 70%, rgba(186, 156, 255, 0.35), transparent 70%),
-                radial-gradient(45% 45% at 50% 50%, rgba(216, 200, 255, 0.25), transparent 70%);
-            background-size: 160% 160%;
-            animation: gradientDrift 28s ease-in-out infinite;
+                radial-gradient(120% 120% at 50% 50%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.20) 100%),
+                rgba(0, 0, 0, 0.10);
         }
-        @keyframes gradientDrift {
-            0% { background-position: 0% 0%, 100% 100%, 50% 50%; }
-            50% { background-position: 100% 100%, 0% 0%, 25% 75%; }
-            100% { background-position: 50% 50%, 100% 0%, 75% 25%; }
+        #filmOverlay::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 180px 180px;
+            opacity: 0.08;
         }
     </style>
 </head>
@@ -189,7 +189,7 @@
 <span class="font-label-sm text-label-sm font-bold uppercase tracking-[0.3em] writing-vertical-rl">Be Not Afraid</span>
 </div>
 <!-- Ambient moving gradient overlay -->
-<div id="gradientOverlay" class="fixed inset-0 z-[55] pointer-events-none" aria-hidden="true"></div>
+<div id="filmOverlay" class="fixed inset-0 z-[55] pointer-events-none" aria-hidden="true"></div>
 <!-- Mobile Drawer -->
 <div id="mobileMenu" class="closed fixed top-0 left-0 h-full w-72 max-w-[85vw] bg-primary text-on-primary z-[70] flex flex-col px-margin-mobile py-margin-mobile drawer-panel md:hidden overflow-y-auto">
 <div class="flex items-center justify-between mb-12">
@@ -219,7 +219,7 @@
 </div>
 <div class="md:col-span-5 mt-12 md:mt-0 md:-ml-12 lg:-ml-64">
 <div class="relative w-full aspect-[4/5] bg-primary">
-<img alt="AVVADON Perfume Bottle: НЕ БІЙСЯ" class="w-full h-full object-cover opacity-95" src="photo_2026-08-08_21-34-22.jpg">
+<div data-alt="AVVADON Perfume Bottle: НЕ БІЙСЯ" class="absolute inset-0 bg-cover bg-fixed bg-center opacity-95" style="background-image: url('photo_2026-08-08_21-34-22.jpg')"></div>
 <div class="absolute inset-0 border border-primary/20 pointer-events-none"></div>
 </div>
 </div>

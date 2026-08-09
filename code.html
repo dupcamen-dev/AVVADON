@@ -129,6 +129,20 @@
 
         nav, #mobileMenu { scrollbar-width: none; -ms-overflow-style: none; overflow-x: hidden; }
         nav::-webkit-scrollbar, #mobileMenu::-webkit-scrollbar { display: none; width: 0; height: 0; }
+
+        #gradientOverlay {
+            background:
+                radial-gradient(55% 55% at 25% 25%, rgba(168, 216, 255, 0.35), transparent 70%),
+                radial-gradient(50% 50% at 75% 70%, rgba(186, 156, 255, 0.35), transparent 70%),
+                radial-gradient(45% 45% at 50% 50%, rgba(216, 200, 255, 0.25), transparent 70%);
+            background-size: 160% 160%;
+            animation: gradientDrift 28s ease-in-out infinite;
+        }
+        @keyframes gradientDrift {
+            0% { background-position: 0% 0%, 100% 100%, 50% 50%; }
+            50% { background-position: 100% 100%, 0% 0%, 25% 75%; }
+            100% { background-position: 50% 50%, 100% 0%, 75% 25%; }
+        }
     </style>
 </head>
 <body class="font-body-md text-body-md antialiased selection:bg-primary selection:text-on-primary">
@@ -174,6 +188,8 @@
 <span class="font-display-xl font-bold text-2xl lg:text-3xl uppercase tracking-[0.35em] writing-vertical-rl leading-none">Sacred Dread</span>
 <span class="font-label-sm text-label-sm font-bold uppercase tracking-[0.3em] writing-vertical-rl">Be Not Afraid</span>
 </div>
+<!-- Ambient moving gradient overlay -->
+<div id="gradientOverlay" class="fixed inset-0 z-[55] pointer-events-none" aria-hidden="true"></div>
 <!-- Mobile Drawer -->
 <div id="mobileMenu" class="closed fixed top-0 left-0 h-full w-72 max-w-[85vw] bg-primary text-on-primary z-[70] flex flex-col px-margin-mobile py-margin-mobile drawer-panel md:hidden overflow-y-auto">
 <div class="flex items-center justify-between mb-12">

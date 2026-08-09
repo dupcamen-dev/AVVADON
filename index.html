@@ -100,7 +100,7 @@
             content: attr(data-text);
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff8f3;
+            background: transparent;
         }
         .glitch-text::before { left: 2px; text-shadow: -1px 0 red; clip: rect(24px, 550px, 90px, 0); animation: glitch-anim 2s infinite linear alternate-reverse; }
         .glitch-text::after { left: -2px; text-shadow: -1px 0 blue; clip: rect(85px, 550px, 140px, 0); animation: glitch-anim 2.5s infinite linear alternate-reverse; }
@@ -126,6 +126,9 @@
 
         #toTopBtn { transition: opacity 0.5s ease, transform 0.3s ease; }
         #toTopBtn:hover { transform: translateY(-4px); }
+
+        nav, #mobileMenu { scrollbar-width: none; -ms-overflow-style: none; overflow-x: hidden; }
+        nav::-webkit-scrollbar, #mobileMenu::-webkit-scrollbar { display: none; width: 0; height: 0; }
     </style>
 </head>
 <body class="font-body-md text-body-md antialiased selection:bg-primary selection:text-on-primary">
@@ -148,11 +151,26 @@
 <span class="material-symbols-outlined text-primary text-3xl">visibility</span>
 </div>
 <div class="flex flex-col gap-12 mt-12">
-<a class="nav-link font-label-sm text-label-sm text-primary font-bold writing-vertical-rl flex flex-col items-center" href="#hero">The Light</a>
-<a class="nav-link font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all flex flex-col items-center" href="#awakening">The Presence</a>
-<a class="nav-link font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all flex flex-col items-center" href="#origin">Origin</a>
-<a class="nav-link font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all flex flex-col items-center" href="#notes">Notes</a>
-<a class="nav-link font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all flex flex-col items-center" href="#submission">Submission</a>
+<a class="nav-link flex items-center justify-center gap-2" href="#hero">
+<span class="font-label-sm text-label-sm text-primary font-bold writing-vertical-rl">The Light</span>
+<span class="material-symbols-outlined text-error text-xl">light_mode</span>
+</a>
+<a class="nav-link flex items-center justify-center gap-2" href="#awakening">
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all">The Presence</span>
+<span class="material-symbols-outlined text-error text-xl">brightness_3</span>
+</a>
+<a class="nav-link flex items-center justify-center gap-2" href="#origin">
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all">Origin</span>
+<span class="material-symbols-outlined text-error text-xl">history_edu</span>
+</a>
+<a class="nav-link flex items-center justify-center gap-2" href="#notes">
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all">Notes</span>
+<span class="material-symbols-outlined text-error text-xl">flare</span>
+</a>
+<a class="nav-link flex items-center justify-center gap-2" href="#submission">
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all">Submission</span>
+<span class="material-symbols-outlined text-error text-xl">next_plan</span>
+</a>
 </div>
 <button id="sidePurchase" class="bg-primary text-on-primary font-label-sm text-label-sm py-2 px-4 uppercase hover:bg-error transition-colors mt-8 writing-vertical-rl rotate-180 cursor-pointer">
             PURCHASE
@@ -186,9 +204,8 @@
 <section id="hero" class="min-h-screen relative flex items-center justify-center pt-24 pb-12 md:pt-32 md:pb-16 px-margin-mobile md:px-margin-desktop overflow-hidden">
 <div class="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
 <div class="md:col-span-7 relative z-20 flex flex-col items-start">
-<span class="material-symbols-outlined text-primary text-5xl mb-6">light_mode</span>
-<h1 class="font-display-xl text-[16vw] md:text-[110px] lg:text-[140px] leading-[0.8] text-primary uppercase tracking-tighter mb-4 glitch-text" data-text="AVVADON:">AVVADON:<br>THE<br>TERRIBLE<br>AURA</h1>
-<p class="font-body-lg text-body-lg mt-8 mb-4 max-w-md">НЕ БІЙСЯ (BE NOT AFRAID)</p>
+<h1 class="font-display-xl text-[16vw] md:text-[110px] lg:text-[140px] leading-[0.8] text-white mix-blend-difference uppercase tracking-tighter mb-4 glitch-text" data-text="AVVADON:">AVVADON:<br>THE<br>TERRIBLE<br>AURA</h1>
+<p class="font-body-lg text-body-lg text-white mix-blend-difference mt-8 mb-4 max-w-md">НЕ БІЙСЯ (BE NOT AFRAID)</p>
 <button id="heroOrder" class="bg-primary text-on-primary font-label-sm text-label-sm py-4 px-10 uppercase tracking-widest hover:bg-error transition-colors cursor-pointer mt-6">Submit to the Scent</button>
 </div>
 <div class="md:col-span-5 relative z-10 mt-12 md:mt-0 md:-ml-12 lg:-ml-64">
@@ -199,7 +216,7 @@
 </div>
 </div>
 <div class="absolute bottom-margin-mobile left-margin-mobile md:bottom-margin-desktop md:left-[35%] z-20 max-w-md">
-<p class="font-body-lg text-body-lg text-error uppercase">
+<p class="font-body-lg text-body-lg text-white mix-blend-difference uppercase">
                     DIVINE PRESENCE IS NOT BENEVOLENT.<br>
                     IT IS A STORM. A RECKONING.<br>
                     THE UNBEARABLE LIGHT.
@@ -213,7 +230,6 @@
 <div class="w-full h-full bg-cover bg-center absolute inset-0 opacity-95 filter grayscale contrast-105" data-alt="AVVADON Descent visual" style="background-image: url('ea571bd9094fa717ebcde27b3c348fd8.jpg')"></div>
 </div>
 <div class="flex flex-col justify-center md:order-2 order-1">
-<span class="material-symbols-outlined text-primary text-4xl mb-6">history_edu</span>
 <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase mb-8">The Descent</h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mb-8">
                         Avvadon was not founded; it was revealed in a moment of sheer, unadulterated terror. When the veil thinned, what we witnessed was not a gentle light, but a blinding, unforgiving radiance that demanded submission.
@@ -229,7 +245,6 @@
 <section id="awakening" class="min-h-screen bg-primary text-surface py-24 md:py-32 px-margin-mobile md:px-margin-desktop relative overflow-hidden flex items-center text-on-primary">
 <div class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-margin-desktop relative z-10">
 <div class="flex flex-col justify-center">
-<span class="material-symbols-outlined text-surface text-4xl mb-6">brightness_3</span>
 <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-surface uppercase mb-8">The Awakening</h2>
 <p class="font-body-lg text-body-lg text-surface-variant max-w-lg mb-12">
                         A scent designed not to comfort, but to command. Notes sharp as celestial blades cut through the mundane, revealing the terrifying beauty of the sublime.
@@ -253,7 +268,6 @@
 </section>
 <!-- Section 3: The Dread (Detailed Notes) -->
 <section id="notes" class="min-h-screen bg-[#1a1a1a] text-surface py-32 px-margin-mobile md:px-margin-desktop flex flex-col items-center justify-center text-center text-on-primary">
-<span class="material-symbols-outlined text-surface text-5xl mb-8">flare</span>
 <h2 class="font-display-xl text-[clamp(32px,11vw,60px)] md:text-[100px] leading-none text-surface uppercase tracking-tighter mb-16 max-w-5xl glitch-text" data-text="DIVINE PRESENCE IS NOT BENEVOLENT">
                 DIVINE PRESENCE IS NOT BENEVOLENT
             </h2>
@@ -325,7 +339,6 @@
 <section id="submission" class="min-h-[70vh] bg-background py-24 md:py-32 px-margin-mobile md:px-margin-desktop flex items-center justify-center">
 <button id="ctaSubmit" class="bg-primary w-full max-w-4xl aspect-[2/1] min-h-[200px] flex items-center justify-center group cursor-pointer relative overflow-hidden text-on-primary">
 <div class="absolute inset-0 bg-error/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
-<span class="material-symbols-outlined text-surface text-5xl mb-4 relative z-10">next_plan</span>
 <h2 class="font-display-xl text-[11vw] md:text-[80px] text-surface group-hover:text-on-tertiary-container transition-colors duration-300 uppercase text-center leading-none z-10" style="text-shadow: 0 0 20px rgba(240, 68, 64, 0);">
 <span class="block mb-4">SUBMIT</span>
 <span class="block">TO THE SCENT</span>

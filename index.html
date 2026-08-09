@@ -139,8 +139,6 @@
             AVVADON
         </a>
 <div class="flex items-center gap-gutter">
-<button id="searchBtn" aria-label="Search" class="material-symbols-outlined text-primary hover:text-tertiary-container transition-colors duration-500 cursor-pointer">visibility</button>
-<button id="wishlistBtn" aria-label="Wishlist" class="material-symbols-outlined text-primary hover:text-tertiary-container transition-colors duration-500 cursor-pointer">auto_awesome</button>
 <button id="cartBtn" aria-label="Cart" class="material-symbols-outlined text-primary hover:text-tertiary-container transition-colors duration-500 cursor-pointer relative">shopping_bag<span id="cartCount" class="absolute -top-1 -right-3 bg-error text-on-error text-[10px] font-label-sm px-1 hidden">0</span></button>
 </div>
 </header>
@@ -531,8 +529,6 @@ Each vessel is transported in a sealed reliquary of matte black and gold. Delive
             });
         });
 
-        $('#searchBtn').addEventListener('click', () => openModal('searchModal'));
-        $('#wishlistBtn').addEventListener('click', () => openModal('searchModal'));
         $('#cartBtn').addEventListener('click', () => openModal('cartModal'));
 
         const notes = {

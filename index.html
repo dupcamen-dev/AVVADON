@@ -144,10 +144,8 @@
 </header>
 <!-- SideNavBar -->
 <nav class="hidden md:flex bg-background fixed left-0 top-0 h-full w-24 border-r border-primary flex-col items-center justify-between py-12 z-40 overflow-y-auto">
-<div class="flex flex-col items-center gap-4">
+<div class="flex flex-col items-center">
 <span class="material-symbols-outlined text-primary text-3xl">visibility</span>
-<div class="font-headline-lg text-headline-lg-mobile text-primary writing-vertical-rl rotate-180 uppercase tracking-widest mt-8">SACRED DREAD</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant opacity-70 writing-vertical-rl rotate-180 uppercase mt-4">Be Not Afraid</div>
 </div>
 <div class="flex flex-col gap-12 mt-12">
 <a class="group relative flex flex-col items-center justify-center nav-link" href="#hero">
@@ -175,6 +173,11 @@
             PURCHASE
         </button>
 </nav>
+<!-- Sacred Dread overlay: straddles sidebar/page seam -->
+<div class="hidden md:flex fixed left-[80px] top-1/2 -translate-y-1/2 z-[45] pointer-events-none flex-col items-center gap-8" aria-hidden="true">
+<span class="font-display-xl text-2xl lg:text-3xl text-error uppercase tracking-[0.35em] writing-vertical-rl leading-none">Sacred Dread</span>
+<span class="font-label-sm text-label-sm text-error uppercase tracking-[0.3em] writing-vertical-rl">Be Not Afraid</span>
+</div>
 <!-- Mobile Drawer -->
 <div id="mobileMenu" class="closed fixed top-0 left-0 h-full w-72 max-w-[85vw] bg-primary text-on-primary z-[70] flex flex-col px-margin-mobile py-margin-mobile drawer-panel md:hidden overflow-y-auto">
 <div class="flex items-center justify-between mb-12">

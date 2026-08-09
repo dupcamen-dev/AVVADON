@@ -1,0 +1,620 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AVVADON</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&amp;family=Hanken+Grotesk:wght@400..900&amp;family=Space+Grotesk:wght@400..700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#474741",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ffb3ac",
+                        "surface": "#fff8f3",
+                        "background": "#fff8f3",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c9c6be",
+                        "primary-fixed": "#e5e2e1",
+                        "surface-tint": "#5f5e5e",
+                        "primary": "#000000",
+                        "on-tertiary-fixed-variant": "#930010",
+                        "on-tertiary-fixed": "#410003",
+                        "on-surface": "#201b13",
+                        "tertiary-container": "#410003",
+                        "inverse-surface": "#353027",
+                        "on-primary-container": "#858383",
+                        "tertiary-fixed": "#ffdad6",
+                        "inverse-on-surface": "#faefe1",
+                        "on-background": "#201b13",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#000000",
+                        "surface-container-highest": "#ece1d3",
+                        "on-tertiary-container": "#f04440",
+                        "secondary": "#5f5f58",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#f2e7d9",
+                        "on-surface-variant": "#444748",
+                        "outline": "#747878",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#1c1b1b",
+                        "on-secondary-container": "#64635c",
+                        "surface-dim": "#e3d8cb",
+                        "secondary-container": "#e2e0d7",
+                        "surface-container": "#f7ecdf",
+                        "surface-variant": "#ece1d3",
+                        "surface-container-low": "#fdf2e4",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-secondary-fixed": "#1c1c17",
+                        "inverse-primary": "#c9c6c5",
+                        "outline-variant": "#c4c7c7",
+                        "surface-bright": "#fff8f3",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#e5e2da"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "dense-cluster": "4px",
+                        "margin-desktop": "64px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Space Grotesk"],
+                        "headline-lg": ["Bodoni Moda"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Space Grotesk"],
+                        "headline-lg-mobile": ["Bodoni Moda"],
+                        "display-xl": ["Bodoni Moda"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["64px", { "lineHeight": "72px", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-lg": ["20px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["48px", { "lineHeight": "52px", "fontWeight": "700" }],
+                        "display-xl": ["120px", { "lineHeight": "100px", "letterSpacing": "-0.04em", "fontWeight": "900" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #fff8f3; color: #201b13; overflow-x: hidden; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0; }
+        .glitch-text { position: relative; }
+        .glitch-text::before, .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff8f3;
+        }
+        .glitch-text::before { left: 2px; text-shadow: -1px 0 red; clip: rect(24px, 550px, 90px, 0); animation: glitch-anim 2s infinite linear alternate-reverse; }
+        .glitch-text::after { left: -2px; text-shadow: -1px 0 blue; clip: rect(85px, 550px, 140px, 0); animation: glitch-anim 2.5s infinite linear alternate-reverse; }
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); }
+            20% { clip: rect(62px, 9999px, 42px, 0); }
+            40% { clip: rect(16px, 9999px, 78px, 0); }
+            60% { clip: rect(89px, 9999px, 13px, 0); }
+            80% { clip: rect(45px, 9999px, 56px, 0); }
+            100% { clip: rect(72px, 9999px, 24px, 0); }
+        }
+        .modal-backdrop { transition: opacity 0.3s ease; }
+        .modal { pointer-events: none; }
+        .modal.modal-open { pointer-events: auto; }
+        .modal-panel { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease; }
+        .modal-open .modal-backdrop { opacity: 1; pointer-events: auto; }
+        .modal-open .modal-panel { transform: translateY(0); opacity: 1; }
+        .modal-panel { transform: translateY(24px); opacity: 0; }
+        .modal-backdrop { opacity: 0; pointer-events: none; }
+        .drawer-panel { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        #mobileMenu.closed { transform: translateX(-100%); }
+        html.smooth { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
+<header class="fixed bg-transparent flex justify-between items-center w-full px-margin-desktop py-unit z-50 top-0">
+<div id="menuBtn" class="flex items-center gap-gutter cursor-pointer group">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:text-error transition-colors">menu</span>
+<span class="font-label-sm text-label-sm text-primary uppercase group-hover:text-error transition-colors">Menu</span>
+</div>
+<a href="#hero" class="font-display-xl text-display-xl uppercase tracking-tighter text-primary scale-95 duration-300 ease-in-out hover:text-tertiary-container transition-colors duration-500">
+            AVVADON
+        </a>
+<div class="flex items-center gap-gutter">
+<button id="searchBtn" aria-label="Search" class="material-symbols-outlined text-primary hover:text-tertiary-container transition-colors duration-500 cursor-pointer">visibility</button>
+<button id="wishlistBtn" aria-label="Wishlist" class="material-symbols-outlined text-primary hover:text-tertiary-container transition-colors duration-500 cursor-pointer">auto_awesome</button>
+<button id="cartBtn" aria-label="Cart" class="material-symbols-outlined text-primary hover:text-tertiary-container transition-colors duration-500 cursor-pointer relative">shopping_bag<span id="cartCount" class="absolute -top-1 -right-3 bg-error text-on-error text-[10px] font-label-sm px-1 hidden">0</span></button>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="hidden md:flex bg-background fixed left-0 top-0 h-full w-24 border-r border-primary flex-col items-center justify-between py-12 z-40">
+<div class="flex flex-col items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">visibility</span>
+<div class="font-headline-lg text-headline-lg-mobile text-primary writing-vertical-rl rotate-180 uppercase tracking-widest mt-8">SACRED DREAD</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant opacity-70 writing-vertical-rl rotate-180 uppercase mt-4">Be Not Afraid</div>
+</div>
+<div class="flex flex-col gap-12 mt-12">
+<a class="group relative flex flex-col items-center justify-center nav-link" href="#hero">
+<span class="font-label-sm text-label-sm text-primary font-bold writing-vertical-rl">The Light</span>
+<span class="material-symbols-outlined absolute opacity-0 group-hover:opacity-100 transition-opacity text-error top-1/2 -translate-y-1/2 -right-7">light_mode</span>
+</a>
+<a class="group relative flex flex-col items-center justify-center nav-link" href="#awakening">
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all">The Presence</span>
+<span class="material-symbols-outlined absolute opacity-0 group-hover:opacity-100 transition-opacity text-error top-1/2 -translate-y-1/2 -right-7">brightness_3</span>
+</a>
+<a class="group relative flex flex-col items-center justify-center nav-link" href="#origin">
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all">Origin</span>
+<span class="material-symbols-outlined absolute opacity-0 group-hover:opacity-100 transition-opacity text-error top-1/2 -translate-y-1/2 -right-7">history_edu</span>
+</a>
+<a class="group relative flex flex-col items-center justify-center nav-link" href="#notes">
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all">Notes</span>
+<span class="material-symbols-outlined absolute opacity-0 group-hover:opacity-100 transition-opacity text-error top-1/2 -translate-y-1/2 -right-7">flare</span>
+</a>
+<a class="group relative flex flex-col items-center justify-center nav-link" href="#submission">
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all">Submission</span>
+<span class="material-symbols-outlined absolute opacity-0 group-hover:opacity-100 transition-opacity text-error top-1/2 -translate-y-1/2 -right-7">next_plan</span>
+</a>
+</div>
+<button id="sidePurchase" class="bg-primary text-on-primary font-label-sm text-label-sm py-2 px-4 uppercase hover:bg-error transition-colors mt-8 writing-vertical-rl rotate-180 cursor-pointer">
+            PURCHASE
+        </button>
+</nav>
+<!-- Mobile Drawer -->
+<div id="mobileMenu" class="closed fixed top-0 left-0 h-full w-72 bg-primary text-on-primary z-[70] flex flex-col px-margin-mobile py-margin-mobile drawer-panel md:hidden">
+<div class="flex items-center justify-between mb-12">
+<span class="font-display-xl text-2xl uppercase tracking-tighter">AVVADON</span>
+<button id="menuClose" class="material-symbols-outlined text-on-primary cursor-pointer hover:text-error transition-colors">close</button>
+</div>
+<div class="flex flex-col gap-6">
+<a class="nav-link font-headline-lg text-2xl uppercase text-on-primary hover:text-error transition-colors" href="#hero">The Light</a>
+<a class="nav-link font-headline-lg text-2xl uppercase text-on-primary hover:text-error transition-colors" href="#awakening">The Presence</a>
+<a class="nav-link font-headline-lg text-2xl uppercase text-on-primary hover:text-error transition-colors" href="#origin">Origin</a>
+<a class="nav-link font-headline-lg text-2xl uppercase text-on-primary hover:text-error transition-colors" href="#notes">Notes</a>
+<a class="nav-link font-headline-lg text-2xl uppercase text-on-primary hover:text-error transition-colors" href="#submission">Submission</a>
+</div>
+<div class="mt-auto">
+<button id="mobilePurchase" class="w-full bg-on-primary text-primary font-label-sm text-label-sm py-4 px-4 uppercase hover:bg-error hover:text-on-error transition-colors cursor-pointer">Purchase</button>
+</div>
+</div>
+<div id="menuOverlay" class="fixed inset-0 bg-primary/50 z-[60] hidden md:hidden"></div>
+<main class="md:ml-24">
+<!-- Section 1: The Light -->
+<section id="hero" class="min-h-screen relative flex items-center justify-center pt-32 pb-16 px-margin-mobile md:px-margin-desktop overflow-hidden">
+<div class="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-7 relative z-20 flex flex-col items-start">
+<h1 class="font-display-xl text-[80px] md:text-[140px] leading-[0.8] text-primary uppercase tracking-tighter mb-4 glitch-text" data-text="AVVADON:">AVVADON:<br>THE<br>TERRIBLE<br>AURA</h1>
+<p class="font-body-lg text-body-lg mt-8 mb-4 max-w-md">НЕ БІЙСЯ (BE NOT AFRAID)</p>
+<button id="heroOrder" class="bg-primary text-on-primary font-label-sm text-label-sm py-4 px-10 uppercase tracking-widest hover:bg-error transition-colors cursor-pointer mt-6">Submit to the Scent</button>
+</div>
+<div class="md:col-span-5 relative z-10 mt-12 md:mt-0 md:-ml-32 lg:-ml-64">
+<div class="relative w-full aspect-[4/5] bg-primary">
+<img alt="AVVADON Perfume Bottle: НЕ БІЙСЯ" class="w-full h-full object-cover opacity-95" src="photo_2026-08-08_21-34-22.jpg">
+<div class="absolute inset-0 border border-primary/20 pointer-events-none"></div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-margin-desktop left-margin-desktop md:left-[35%] z-20 max-w-md">
+<p class="font-body-lg text-body-lg text-primary uppercase">
+                    DIVINE PRESENCE IS NOT BENEVOLENT.<br>
+                    IT IS A STORM. A RECKONING.<br>
+                    THE UNBEARABLE LIGHT.
+                </p>
+</div>
+</section>
+<!-- Section: Origin -->
+<section id="origin" class="min-h-screen bg-surface py-32 px-margin-mobile md:px-margin-desktop relative overflow-hidden flex items-center border-t border-primary/10">
+<div class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-margin-desktop relative z-10">
+<div class="relative h-[600px] flex items-center justify-center md:order-1 order-2">
+<div class="w-full h-full bg-cover bg-center absolute inset-0 opacity-95 filter grayscale contrast-105" data-alt="AVVADON Descent visual" style="background-image: url('ea571bd9094fa717ebcde27b3c348fd8.jpg')"></div>
+</div>
+<div class="flex flex-col justify-center md:order-2 order-1">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase mb-8">The Descent</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mb-8">
+                        Avvadon was not founded; it was revealed in a moment of sheer, unadulterated terror. When the veil thinned, what we witnessed was not a gentle light, but a blinding, unforgiving radiance that demanded submission.
+                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
+                        Our fragrances are extractions of that profound dread—the awe that paralyzes and purifies. They are not meant to adorn, but to annoint.
+                    </p>
+<button id="originOrder" class="mt-10 self-start bg-primary text-on-primary font-label-sm text-label-sm py-3 px-8 uppercase tracking-widest hover:bg-error transition-colors cursor-pointer">Annoint Me</button>
+</div>
+</div>
+</section>
+<!-- Section 2: The Transition (Conceptual Scroll Shift) -->
+<section id="awakening" class="min-h-screen bg-primary text-surface py-32 px-margin-mobile md:px-margin-desktop relative overflow-hidden flex items-center text-on-primary">
+<div class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-margin-desktop relative z-10">
+<div class="flex flex-col justify-center">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-surface uppercase mb-8">The Awakening</h2>
+<p class="font-body-lg text-body-lg text-surface-variant max-w-lg mb-12">
+                        A scent designed not to comfort, but to command. Notes sharp as celestial blades cut through the mundane, revealing the terrifying beauty of the sublime.
+                    </p>
+<div class="grid grid-cols-2 gap-gutter max-w-md">
+<div class="flex flex-col gap-4 border-t border-surface-variant pt-4">
+<span class="material-symbols-outlined text-4xl text-surface">visibility</span>
+<span class="font-label-sm text-label-sm uppercase">Vision / Philosophy</span>
+</div>
+<div class="flex flex-col gap-4 border-t border-surface-variant pt-4">
+<span class="material-symbols-outlined text-4xl text-surface">auto_awesome</span>
+<span class="font-label-sm text-label-sm uppercase">Fear / Experience</span>
+</div>
+</div>
+<button id="awakeningOrder" class="mt-12 self-start bg-on-primary text-primary font-label-sm text-label-sm py-3 px-8 uppercase tracking-widest hover:bg-error hover:text-on-error transition-colors cursor-pointer">Command the Scent</button>
+</div>
+<div class="relative h-[600px] flex items-center justify-center">
+<div class="w-full h-full bg-cover bg-center absolute inset-0 opacity-95 filter grayscale contrast-105" data-alt="AVVADON Awakening visual" style="background-image: url('photo_2026-08-08_15-29-11.jpg')"></div>
+</div>
+</div>
+</section>
+<!-- Section 3: The Dread (Detailed Notes) -->
+<section id="notes" class="min-h-screen bg-[#1a1a1a] text-surface py-32 px-margin-mobile md:px-margin-desktop flex flex-col items-center justify-center text-center text-on-primary">
+<h2 class="font-display-xl text-[60px] md:text-[100px] leading-none text-surface uppercase tracking-tighter mb-16 max-w-5xl glitch-text" data-text="DIVINE PRESENCE IS NOT BENEVOLENT">
+                DIVINE PRESENCE IS NOT BENEVOLENT
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter w-full max-w-6xl mt-16">
+<div class="bg-primary p-8 border border-surface/20 flex flex-col items-center gap-6 hover:-translate-y-2 transition-transform duration-300 text-on-primary cursor-pointer" data-note="Ozone">
+<span class="font-headline-lg text-2xl uppercase">Ozone</span>
+<span class="font-label-sm text-label-sm text-surface-variant uppercase tracking-widest">(The Arrival)</span>
+<p class="font-body-md text-body-md text-sm text-surface-variant">The electric anticipation before the storm. The scent of shattered atmospheres.</p>
+</div>
+<div class="bg-primary p-8 border border-surface/20 flex flex-col items-center gap-6 hover:-translate-y-2 transition-transform duration-300 lg:-mt-8 text-on-primary cursor-pointer" data-note="Myrrh">
+<span class="font-headline-lg text-2xl uppercase">Myrrh</span>
+<span class="font-label-sm text-label-sm text-surface-variant uppercase tracking-widest">(The Annointing)</span>
+<p class="font-body-md text-body-md text-sm text-surface-variant">Bitter resin wept from ancient wounds, hardening the soul against the inevitable.</p>
+</div>
+<div class="bg-primary p-8 border border-surface/20 flex flex-col items-center gap-6 hover:-translate-y-2 transition-transform duration-300 text-on-primary cursor-pointer" data-note="Incense">
+<span class="font-headline-lg text-2xl uppercase">Incense</span>
+<span class="font-label-sm text-label-sm text-surface-variant uppercase tracking-widest">(The Ritual)</span>
+<p class="font-body-md text-body-md text-sm text-surface-variant">Thick, suffocating smoke from hidden altars, demanding a silence absolute.</p>
+</div>
+<div class="bg-primary p-8 border border-surface/20 flex flex-col items-center gap-6 hover:-translate-y-2 transition-transform duration-300 lg:-mt-8 text-on-primary cursor-pointer" data-note="Civet">
+<span class="font-headline-lg text-2xl uppercase">Civet</span>
+<span class="font-label-sm text-label-sm text-surface-variant uppercase tracking-widest">(The Flesh)</span>
+<p class="font-body-md text-body-md text-sm text-surface-variant">The warm, terrible reminder of base mortality cowering in the presence of the eternal.</p>
+</div>
+</div>
+</section>
+<!-- Section: Testimonials -->
+<section class="min-h-screen bg-background text-primary py-32 px-margin-mobile md:px-margin-desktop relative overflow-hidden flex flex-col items-center border-b border-primary/20">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg uppercase mb-24 text-center text-primary">Testimonials of the Witnessed</h2>
+<div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-16 relative z-10">
+<div class="flex flex-col gap-6 relative">
+<span class="material-symbols-outlined text-6xl text-primary/10 absolute -top-8 -left-4">format_quote</span>
+<p class="font-body-md text-body-md italic z-10 text-primary">"It did not smell like something I should wear. It smelled like something that was wearing me. I wept."</p>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">— Subject IV</span>
+</div>
+<div class="flex flex-col gap-6 relative md:mt-12">
+<span class="material-symbols-outlined text-6xl text-primary/10 absolute -top-8 -left-4">format_quote</span>
+<p class="font-body-md text-body-md italic z-10 text-primary">"I sprayed it once, and the shadows in my room seemed to snap to attention. A truly terrifying elegance."</p>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">— The Observer</span>
+</div>
+<div class="flex flex-col gap-6 relative">
+<span class="material-symbols-outlined text-6xl text-primary/10 absolute -top-8 -left-4">format_quote</span>
+<p class="font-body-md text-body-md italic z-10 text-primary">"It is heavy. Not with scent, but with gravity. 'Be Not Afraid' is a command, not a comfort."</p>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">— Initiate IX</span>
+</div>
+</div>
+</section>
+<!-- Section 4: CTA -->
+<section id="submission" class="min-h-[70vh] bg-background py-32 px-margin-mobile md:px-margin-desktop flex items-center justify-center">
+<button id="ctaSubmit" class="bg-primary w-full max-w-4xl aspect-[2/1] flex items-center justify-center group cursor-pointer relative overflow-hidden text-on-primary">
+<div class="absolute inset-0 bg-error/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
+<h2 class="font-display-xl text-[50px] md:text-[80px] text-surface group-hover:text-on-tertiary-container transition-colors duration-300 uppercase text-center leading-none z-10" style="text-shadow: 0 0 20px rgba(240, 68, 64, 0);">
+<span class="block mb-4">SUBMIT</span>
+<span class="block">TO THE SCENT</span>
+</h2>
+</button>
+</section>
+<!-- Footer -->
+<footer class="bg-primary text-on-primary flex flex-col md:flex-row justify-between items-end w-full px-margin-desktop py-gutter gap-gutter full-width bottom-0 border-t-2 border-primary">
+<div class="font-display-xl text-headline-lg-mobile text-on-primary uppercase tracking-tighter">
+                AVVADON
+            </div>
+<div class="flex flex-col md:flex-row gap-8 items-end md:items-center">
+<a class="font-label-sm text-label-sm text-on-primary-fixed-variant opacity-60 hover:text-on-tertiary-container transition-opacity duration-300 uppercase cursor-pointer" data-modal="covenantModal">The Covenant</a>
+<a class="font-label-sm text-label-sm text-on-primary-fixed-variant opacity-60 hover:text-on-tertiary-container transition-opacity duration-300 uppercase cursor-pointer" data-modal="shippingModal">Shipping Rituals</a>
+<a class="font-label-sm text-label-sm text-on-primary-fixed-variant opacity-60 hover:text-on-tertiary-container transition-opacity duration-300 uppercase cursor-pointer" data-modal="contactModal">Contact the Void</a>
+</div>
+<div class="font-body-md text-body-md text-on-primary opacity-50 text-right max-w-xs">
+                © AVVADON MMXXIV. DIVINE PRESENCE IS NOT BENEVOLENT.
+            </div>
+</footer>
+</main>
+
+<!-- Order Modal -->
+<div id="orderModal" class="modal fixed inset-0 z-[80] flex items-center justify-center px-4">
+<div class="modal-backdrop absolute inset-0 bg-primary/70" data-close="orderModal"></div>
+<div class="modal-panel relative bg-background border border-primary w-full max-w-lg max-h-[90vh] overflow-y-auto p-8 md:p-12">
+<button data-close="orderModal" class="absolute top-4 right-4 material-symbols-outlined text-primary cursor-pointer hover:text-error transition-colors">close</button>
+<h2 class="font-headline-lg text-headline-lg-mobile uppercase mb-2 text-primary" id="orderTitle">Submit to the Scent</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">The ritual of acquisition. Choose your vessel.</p>
+<form id="orderForm" class="flex flex-col gap-6">
+<div class="flex items-center justify-between border border-primary px-4 py-3">
+<span class="font-label-sm text-label-sm uppercase text-primary">Vessel — 50ml</span>
+<span class="font-body-md text-body-md">430€</span>
+</div>
+<label class="flex flex-col gap-2 cursor-pointer">
+<span class="font-label-sm text-label-sm uppercase text-primary">Quantity</span>
+<input id="orderQty" type="number" min="1" max="10" value="1" class="bg-surface border border-primary font-body-md text-body-md px-3 py-3 focus:outline-none">
+</label>
+<label class="flex flex-col gap-2 cursor-pointer">
+<span class="font-label-sm text-label-sm uppercase text-primary">Name</span>
+<input id="orderName" type="text" required placeholder="Your mortal name" class="bg-surface border-b border-primary font-body-md text-body-md py-3 focus:outline-none focus:border-error">
+</label>
+<label class="flex flex-col gap-2 cursor-pointer">
+<span class="font-label-sm text-label-sm uppercase text-primary">Email</span>
+<input id="orderEmail" type="email" required placeholder="you@thevoid.com" class="bg-surface border-b border-primary font-body-md text-body-md py-3 focus:outline-none focus:border-error">
+</label>
+<div class="flex flex-col gap-2">
+<span class="font-label-sm text-label-sm uppercase text-primary">Total</span>
+<span id="orderTotal" class="font-headline-lg text-2xl text-primary">430€</span>
+</div>
+<button type="submit" class="bg-primary text-on-primary font-label-sm text-label-sm py-4 uppercase tracking-widest hover:bg-error transition-colors cursor-pointer">Confirm the Covenant</button>
+</form>
+</div>
+</div>
+
+<!-- Success Modal -->
+<div id="successModal" class="modal fixed inset-0 z-[80] flex items-center justify-center px-4">
+<div class="modal-backdrop absolute inset-0 bg-primary/70" data-close="successModal"></div>
+<div class="modal-panel relative bg-background border border-primary w-full max-w-md p-8 md:p-12 text-center">
+<span class="material-symbols-outlined text-6xl text-primary mb-4">auto_awesome</span>
+<h2 class="font-headline-lg text-headline-lg-mobile uppercase mb-4 text-primary">The Covenant Is Sealed</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Your ritual has been received. The void will deliver in 3–5 rites.</p>
+<button data-close="successModal" class="bg-primary text-on-primary font-label-sm text-label-sm py-3 px-8 uppercase tracking-widest hover:bg-error transition-colors cursor-pointer">Close</button>
+</div>
+</div>
+
+<!-- Search Modal -->
+<div id="searchModal" class="modal fixed inset-0 z-[80] flex items-start justify-center px-4 pt-32">
+<div class="modal-backdrop absolute inset-0 bg-primary/70" data-close="searchModal"></div>
+<div class="modal-panel relative bg-background border border-primary w-full max-w-xl p-8 md:p-12">
+<button data-close="searchModal" class="absolute top-4 right-4 material-symbols-outlined text-primary cursor-pointer hover:text-error transition-colors">close</button>
+<h2 class="font-headline-lg text-headline-lg-mobile uppercase mb-8 text-primary">The Search</h2>
+<input id="searchInput" type="text" placeholder="Seek the forbidden notes..." class="w-full bg-transparent border-b-2 border-primary font-headline-lg text-xl py-3 focus:outline-none placeholder:text-primary/30 uppercase">
+<div id="searchResults" class="mt-8 flex flex-col gap-2"></div>
+</div>
+</div>
+
+<!-- Cart Modal -->
+<div id="cartModal" class="modal fixed inset-0 z-[80] flex items-center justify-center px-4">
+<div class="modal-backdrop absolute inset-0 bg-primary/70" data-close="cartModal"></div>
+<div class="modal-panel relative bg-background border border-primary w-full max-w-lg max-h-[90vh] overflow-y-auto p-8 md:p-12">
+<button data-close="cartModal" class="absolute top-4 right-4 material-symbols-outlined text-primary cursor-pointer hover:text-error transition-colors">close</button>
+<h2 class="font-headline-lg text-headline-lg-mobile uppercase mb-8 text-primary">The Cart</h2>
+<div id="cartItems" class="flex flex-col gap-4 mb-8"></div>
+<p class="font-body-md text-body-md text-on-surface-variant" id="cartEmpty">Your cart is empty. The void hungers.</p>
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-center border-t border-primary pt-4">
+<span class="font-label-sm text-label-sm uppercase text-primary">Total</span>
+<span id="cartTotal" class="font-headline-lg text-2xl text-primary">0€</span>
+</div>
+<button id="cartCheckout" class="bg-primary text-on-primary font-label-sm text-label-sm py-4 uppercase tracking-widest hover:bg-error transition-colors cursor-pointer disabled:opacity-40">Checkout</button>
+</div>
+</div>
+</div>
+
+<!-- Covenant Modal -->
+<div id="covenantModal" class="modal fixed inset-0 z-[80] flex items-center justify-center px-4">
+<div class="modal-backdrop absolute inset-0 bg-primary/70" data-close="covenantModal"></div>
+<div class="modal-panel relative bg-background border border-primary w-full max-w-lg max-h-[90vh] overflow-y-auto p-8 md:p-12">
+<button data-close="covenantModal" class="absolute top-4 right-4 material-symbols-outlined text-primary cursor-pointer hover:text-error transition-colors">close</button>
+<h2 class="font-headline-lg text-headline-lg-mobile uppercase mb-8 text-primary">The Covenant</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+By acquiring AVVADON, you enter into a binding covenant with the House of Dread. You agree to wear the scent only for purposes of awe and submission. Resale constitutes heresy. Reproduction is forbidden. The scent is known to induce visions, sudden clarity, and an uncomfortable awareness of the eternal.
+</p>
+</div>
+</div>
+
+<!-- Shipping Modal -->
+<div id="shippingModal" class="modal fixed inset-0 z-[80] flex items-center justify-center px-4">
+<div class="modal-backdrop absolute inset-0 bg-primary/70" data-close="shippingModal"></div>
+<div class="modal-panel relative bg-background border border-primary w-full max-w-lg max-h-[90vh] overflow-y-auto p-8 md:p-12">
+<button data-close="shippingModal" class="absolute top-4 right-4 material-symbols-outlined text-primary cursor-pointer hover:text-error transition-colors">close</button>
+<h2 class="font-headline-lg text-headline-lg-mobile uppercase mb-8 text-primary">Shipping Rituals</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+Each vessel is transported in a sealed reliquary of matte black and gold. Delivery is performed within 3–5 ritual days. International dispatch occurs under the new moon. Tracking is provided through the sacred chant "REVELATION". Packages that witness terror in transit are replaced without question.
+</p>
+</div>
+</div>
+
+<!-- Contact Modal -->
+<div id="contactModal" class="modal fixed inset-0 z-[80] flex items-center justify-center px-4">
+<div class="modal-backdrop absolute inset-0 bg-primary/70" data-close="contactModal"></div>
+<div class="modal-panel relative bg-background border border-primary w-full max-w-lg max-h-[90vh] overflow-y-auto p-8 md:p-12">
+<button data-close="contactModal" class="absolute top-4 right-4 material-symbols-outlined text-primary cursor-pointer hover:text-error transition-colors">close</button>
+<h2 class="font-headline-lg text-headline-lg-mobile uppercase mb-8 text-primary">Contact the Void</h2>
+<form id="contactForm" class="flex flex-col gap-6">
+<label class="flex flex-col gap-2 cursor-pointer">
+<span class="font-label-sm text-label-sm uppercase text-primary">Name</span>
+<input id="contactName" type="text" required placeholder="Your name" class="bg-surface border-b border-primary font-body-md text-body-md py-3 focus:outline-none focus:border-error">
+</label>
+<label class="flex flex-col gap-2 cursor-pointer">
+<span class="font-label-sm text-label-sm uppercase text-primary">Message</span>
+<textarea id="contactMessage" rows="4" required placeholder="Speak, and the void shall hear..." class="bg-surface border-b border-primary font-body-md text-body-md py-3 focus:outline-none focus:border-error resize-none"></textarea>
+</label>
+<button type="submit" class="bg-primary text-on-primary font-label-sm text-label-sm py-4 uppercase tracking-widest hover:bg-error transition-colors cursor-pointer">Send into the Void</button>
+</form>
+</div>
+</div>
+
+<script>
+        const $ = (sel) => document.querySelector(sel);
+        const $$ = (sel) => document.querySelectorAll(sel);
+        const html = document.documentElement;
+        html.classList.add('smooth');
+
+        function openModal(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.classList.add('modal-open');
+            el.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.classList.remove('modal-open');
+            el.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        $$('.modal-backdrop').forEach((b) => {
+            b.addEventListener('click', () => {
+                const panel = b.parentElement;
+                if (panel) closeModal(panel.id);
+            });
+        });
+        $$('[data-close]').forEach((el) => {
+            el.addEventListener('click', () => closeModal(el.getAttribute('data-close')));
+        });
+
+        function closeMobileMenu() {
+            $('#mobileMenu').classList.add('closed');
+            $('#menuOverlay').classList.add('hidden');
+        }
+        function openMobileMenu() {
+            $('#mobileMenu').classList.remove('closed');
+            $('#menuOverlay').classList.remove('hidden');
+        }
+        $('#menuBtn').addEventListener('click', () => {
+            if (window.innerWidth < 768) openMobileMenu();
+            else openModal('searchModal');
+        });
+        $('#menuClose').addEventListener('click', closeMobileMenu);
+        $('#menuOverlay').addEventListener('click', closeMobileMenu);
+
+        $$('.nav-link').forEach((a) => {
+            a.addEventListener('click', () => {
+                if (window.innerWidth < 768) closeMobileMenu();
+            });
+        });
+
+        $('#searchBtn').addEventListener('click', () => openModal('searchModal'));
+        $('#wishlistBtn').addEventListener('click', () => openModal('searchModal'));
+        $('#cartBtn').addEventListener('click', () => openModal('cartModal'));
+
+        const notes = {
+            Ozone: 'Ozone — The electric anticipation before the storm. The scent of shattered atmospheres.',
+            Myrrh: 'Myrrh — Bitter resin wept from ancient wounds, hardening the soul against the inevitable.',
+            Incense: 'Incense — Thick, suffocating smoke from hidden altars, demanding a silence absolute.',
+            Civet: 'Civet — The warm, terrible reminder of base mortality cowering in the presence of the eternal.'
+        };
+        const searchInput = $('#searchInput');
+        const searchResults = $('#searchResults');
+        searchInput.addEventListener('input', () => {
+            const q = searchInput.value.trim().toLowerCase();
+            searchResults.innerHTML = '';
+            if (!q) return;
+            Object.entries(notes).forEach(([name, desc]) => {
+                if (name.toLowerCase().includes(q) || desc.toLowerCase().includes(q)) {
+                    const btn = document.createElement('button');
+                    btn.className = 'text-left flex items-center justify-between gap-4 border border-primary px-4 py-3 hover:bg-primary hover:text-on-primary transition-colors cursor-pointer';
+                    btn.innerHTML = '<span class="font-label-sm text-label-sm uppercase">' + name + '</span><span class="material-symbols-outlined">north_east</span>';
+                    btn.addEventListener('click', () => {
+                        openOrder(name);
+                        closeModal('searchModal');
+                    });
+                    searchResults.appendChild(btn);
+                }
+            });
+        });
+
+        let cart = [];
+        function updateCartUI() {
+            const count = $('#cartCount');
+            const items = $('#cartItems');
+            const totalEl = $('#cartTotal');
+            const empty = $('#cartEmpty');
+            const checkout = $('#cartCheckout');
+            const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+            const itemCount = cart.reduce((s, i) => s + i.qty, 0);
+            count.textContent = itemCount;
+            count.classList.toggle('hidden', itemCount === 0);
+            checkout.disabled = itemCount === 0;
+            empty.classList.toggle('hidden', cart.length > 0);
+            items.innerHTML = '';
+            cart.forEach((item, idx) => {
+                const row = document.createElement('div');
+                row.className = 'flex items-center justify-between gap-4 border border-primary px-4 py-3';
+                row.innerHTML = '<div class="flex flex-col"><span class="font-label-sm text-label-sm uppercase text-primary">' + item.name + '</span><span class="text-sm text-on-surface-variant">' + item.size + ' × ' + item.qty + '</span></div><div class="flex items-center gap-4"><span class="font-body-md text-body-md">' + item.price * item.qty + '€</span><button class="material-symbols-outlined text-error cursor-pointer" data-idx="' + idx + '">delete</button></div>';
+                items.appendChild(row);
+            });
+            $$('#cartItems [data-idx]').forEach((b) => {
+                b.addEventListener('click', () => {
+                    cart.splice(parseInt(b.getAttribute('data-idx')), 1);
+                    updateCartUI();
+                });
+            });
+            totalEl.textContent = total + '€';
+        }
+
+        function openOrder(noteName) {
+            $('#orderTitle').textContent = noteName ? noteName.toUpperCase() : 'Submit to the Scent';
+            $('#orderName').value = '';
+            $('#orderEmail').value = '';
+            $('#orderQty').value = 1;
+            updateOrderTotal();
+            openModal('orderModal');
+        }
+
+        const PRICE = 430;
+        function updateOrderTotal() {
+            const qty = Math.max(1, parseInt($('#orderQty').value) || 1);
+            $('#orderTotal').textContent = PRICE * qty + '€';
+        }
+        $('#orderQty').addEventListener('input', updateOrderTotal);
+
+        function submitOrder(e) {
+            e.preventDefault();
+            const qty = Math.max(1, parseInt($('#orderQty').value) || 1);
+            const name = $('#orderTitle').textContent;
+            cart.push({ name: name, size: '50ml', qty: qty, price: PRICE });
+            updateCartUI();
+            closeModal('orderModal');
+            openModal('successModal');
+        }
+        $('#orderForm').addEventListener('submit', submitOrder);
+
+        $('#heroOrder').addEventListener('click', () => openOrder());
+        $('#originOrder').addEventListener('click', () => openOrder());
+        $('#awakeningOrder').addEventListener('click', () => openOrder());
+        $('#ctaSubmit').addEventListener('click', () => openOrder());
+        $('#sidePurchase').addEventListener('click', () => openOrder());
+        $('#mobilePurchase').addEventListener('click', () => { closeMobileMenu(); openOrder(); });
+        $('#cartCheckout').addEventListener('click', () => {
+            if (cart.length === 0) return;
+            cart = [];
+            updateCartUI();
+            closeModal('cartModal');
+            openModal('successModal');
+        });
+
+        $$('[data-note]').forEach((card) => {
+            card.addEventListener('click', () => openOrder(card.getAttribute('data-note')));
+        });
+
+        $('#contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            $('#contactName').value = '';
+            $('#contactMessage').value = '';
+            closeModal('contactModal');
+            openModal('successModal');
+        });
+
+        updateCartUI();
+    </script>
+</body></html>

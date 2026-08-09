@@ -150,32 +150,25 @@
 <div class="flex flex-col items-center">
 <span class="material-symbols-outlined text-primary text-3xl">visibility</span>
 </div>
-<div class="flex flex-col gap-12 mt-12">
-<a class="nav-link flex items-center justify-center gap-2" href="#hero">
-<span class="font-label-sm text-label-sm text-primary font-bold writing-vertical-rl">The Light</span>
-<span class="material-symbols-outlined text-error text-xl">light_mode</span>
-</a>
-<a class="nav-link flex items-center justify-center gap-2" href="#awakening">
-<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all">The Presence</span>
-<span class="material-symbols-outlined text-error text-xl">brightness_3</span>
-</a>
-<a class="nav-link flex items-center justify-center gap-2" href="#origin">
-<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all">Origin</span>
-<span class="material-symbols-outlined text-error text-xl">history_edu</span>
-</a>
-<a class="nav-link flex items-center justify-center gap-2" href="#notes">
-<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all">Notes</span>
-<span class="material-symbols-outlined text-error text-xl">flare</span>
-</a>
-<a class="nav-link flex items-center justify-center gap-2" href="#submission">
-<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all">Submission</span>
-<span class="material-symbols-outlined text-error text-xl">next_plan</span>
-</a>
+<div id="sideNavLinks" class="flex flex-col gap-12 mt-12">
+<a class="nav-link font-label-sm text-label-sm text-primary font-bold writing-vertical-rl flex flex-col items-center" href="#hero">The Light</a>
+<a class="nav-link font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all flex flex-col items-center" href="#awakening">The Presence</a>
+<a class="nav-link font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all flex flex-col items-center" href="#origin">Origin</a>
+<a class="nav-link font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all flex flex-col items-center" href="#notes">Notes</a>
+<a class="nav-link font-label-sm text-label-sm text-on-surface-variant opacity-50 writing-vertical-rl hover:opacity-100 hover:text-error transition-all flex flex-col items-center" href="#submission">Submission</a>
 </div>
 <button id="sidePurchase" class="bg-primary text-on-primary font-label-sm text-label-sm py-2 px-4 uppercase hover:bg-error transition-colors mt-8 writing-vertical-rl rotate-180 cursor-pointer">
             PURCHASE
         </button>
 </nav>
+<!-- Side icons: on the page, opposite their sidebar words -->
+<div id="sideIcons" class="hidden md:block fixed left-[104px] top-0 h-full z-30 pointer-events-none" aria-hidden="true">
+<span id="sideIcon-light" class="material-symbols-outlined text-error text-xl absolute left-0">light_mode</span>
+<span id="sideIcon-presence" class="material-symbols-outlined text-error text-xl absolute left-0">brightness_3</span>
+<span id="sideIcon-origin" class="material-symbols-outlined text-error text-xl absolute left-0">history_edu</span>
+<span id="sideIcon-notes" class="material-symbols-outlined text-error text-xl absolute left-0">flare</span>
+<span id="sideIcon-submission" class="material-symbols-outlined text-error text-xl absolute left-0">next_plan</span>
+</div>
 <!-- Sacred Dread overlay: straddles sidebar/page seam -->
 <div class="hidden md:flex fixed left-[80px] top-[20%] z-[45] pointer-events-none flex-col items-center gap-8 rotate-180" aria-hidden="true">
 <span class="font-display-xl text-2xl lg:text-3xl text-error uppercase tracking-[0.35em] writing-vertical-rl leading-none">Sacred Dread</span>
@@ -201,21 +194,21 @@
 <div id="menuOverlay" class="fixed inset-0 bg-primary/50 z-[60] hidden md:hidden"></div>
 <main class="md:ml-24">
 <!-- Section 1: The Light -->
-<section id="hero" class="min-h-screen relative flex items-center justify-center pt-24 pb-12 md:pt-32 md:pb-16 px-margin-mobile md:px-margin-desktop overflow-hidden">
-<div class="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
-<div class="md:col-span-7 relative z-20 flex flex-col items-start">
-<h1 class="font-display-xl text-[16vw] md:text-[110px] lg:text-[140px] leading-[0.8] text-white mix-blend-difference uppercase tracking-tighter mb-4 glitch-text" data-text="AVVADON:">AVVADON:<br>THE<br>TERRIBLE<br>AURA</h1>
-<p class="font-body-lg text-body-lg text-white mix-blend-difference mt-8 mb-4 max-w-md">НЕ БІЙСЯ (BE NOT AFRAID)</p>
-<button id="heroOrder" class="bg-primary text-on-primary font-label-sm text-label-sm py-4 px-10 uppercase tracking-widest hover:bg-error transition-colors cursor-pointer mt-6">Submit to the Scent</button>
+<section id="hero" class="min-h-screen relative isolate flex items-center justify-center pt-24 pb-12 md:pt-32 md:pb-16 px-margin-mobile md:px-margin-desktop overflow-hidden">
+<div class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-7 flex flex-col items-start">
+<h1 class="relative z-10 font-display-xl text-[16vw] md:text-[110px] lg:text-[140px] leading-[0.8] text-white mix-blend-difference uppercase tracking-tighter mb-4 glitch-text" data-text="AVVADON:">AVVADON:<br>THE<br>TERRIBLE<br>AURA</h1>
+<p class="relative z-10 font-body-lg text-body-lg text-white mix-blend-difference mt-8 mb-4 max-w-md">НЕ БІЙСЯ (BE NOT AFRAID)</p>
+<button id="heroOrder" class="relative z-10 bg-primary text-on-primary font-label-sm text-label-sm py-4 px-10 uppercase tracking-widest hover:bg-error transition-colors cursor-pointer mt-6">Submit to the Scent</button>
 </div>
-<div class="md:col-span-5 relative z-10 mt-12 md:mt-0 md:-ml-12 lg:-ml-64">
+<div class="md:col-span-5 mt-12 md:mt-0 md:-ml-12 lg:-ml-64">
 <div class="relative w-full aspect-[4/5] bg-primary">
 <img alt="AVVADON Perfume Bottle: НЕ БІЙСЯ" class="w-full h-full object-cover opacity-95" src="photo_2026-08-08_21-34-22.jpg">
 <div class="absolute inset-0 border border-primary/20 pointer-events-none"></div>
 </div>
 </div>
 </div>
-<div class="absolute bottom-margin-mobile left-margin-mobile md:bottom-margin-desktop md:left-[35%] z-20 max-w-md">
+<div class="absolute bottom-margin-mobile left-margin-mobile md:bottom-margin-desktop md:left-[35%] max-w-md">
 <p class="font-body-lg text-body-lg text-white mix-blend-difference uppercase">
                     DIVINE PRESENCE IS NOT BENEVOLENT.<br>
                     IT IS A STORM. A RECKONING.<br>
@@ -660,6 +653,29 @@ Each vessel is transported in a sealed reliquary of matte black and gold. Delive
             toTopBtn.classList.toggle('pointer-events-none', !show);
         });
         toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const sideIcons = [
+            ['#sideNavLinks a:nth-child(1)', '#sideIcon-light'],
+            ['#sideNavLinks a:nth-child(2)', '#sideIcon-presence'],
+            ['#sideNavLinks a:nth-child(3)', '#sideIcon-origin'],
+            ['#sideNavLinks a:nth-child(4)', '#sideIcon-notes'],
+            ['#sideNavLinks a:nth-child(5)', '#sideIcon-submission']
+        ];
+        function alignSideIcons() {
+            if (window.innerWidth < 768) return;
+            sideIcons.forEach(([linkSel, iconSel]) => {
+                const link = document.querySelector(linkSel);
+                const icon = document.querySelector(iconSel);
+                if (!link || !icon) return;
+                const lr = link.getBoundingClientRect();
+                icon.style.top = (lr.top + lr.height / 2 - icon.offsetHeight / 2) + 'px';
+            });
+        }
+        alignSideIcons();
+        window.addEventListener('load', alignSideIcons);
+        window.addEventListener('resize', alignSideIcons);
+        const sideNav = document.querySelector('nav');
+        if (sideNav) sideNav.addEventListener('scroll', alignSideIcons);
 
         updateCartUI();
     </script>
